@@ -1,0 +1,25 @@
+
+/* dark-theme.css */
+.root {
+    -fx-background-color: #333;
+    -fx-text-fill: #ccc;
+}
+
+.menu-bar {
+    -fx-background-color: #666;
+}
+
+.table-view {
+    -fx-base: #222;
+    -fx-control-inner-background: #222;
+    -fx-background-color: #222;
+    -fx-table-cell-border-color: transparent;
+    -fx-text-fill: #eee;
+    -fx-selection-bar: #666;
+    -fx-selection-bar-non-focused: #444;
+}
+
+.button {
+    -fx-background-color: #555;
+    -fx-text-fill: #eee;
+}

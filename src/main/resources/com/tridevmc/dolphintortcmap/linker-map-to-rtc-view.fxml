@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.tridevmc.dolphintortcmap.LinkerMapToRTCMapController"
+      prefHeight="400.0" prefWidth="600.0"
+      spacing="10">
+
+    <MenuBar>
+        <Menu text="File">
+            <MenuItem text="Import Dolphin .map file" onAction="#importMapFile"/>
+        </Menu>
+    </MenuBar>
+
+    <TextField fx:id="searchField" promptText="Search..."/>
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <!-- Add some padding to the top, left, right, and bottom of the outside of the VBox -->
+        <padding>
+            <Insets top="5" left="10" right="10" bottom="10"/>
+        </padding>
+
+        <TableView fx:id="dataTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Address" fx:id="addressColumn"/>
+                <TableColumn text="Size" fx:id="sizeColumn"/>
+                <TableColumn text="VMA" fx:id="vmaColumn"/>
+                <TableColumn text="Name" fx:id="nameColumn" minWidth="100"/>
+            </columns>
+        </TableView>
+
+        <HBox alignment="CENTER">
+            <Button text="Export Selected As RTC Ranges" onAction="#exportSelectedRanges"/>
+        </HBox>
+    </VBox>
+</VBox>
