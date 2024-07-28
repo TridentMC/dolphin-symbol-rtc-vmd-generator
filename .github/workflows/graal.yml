@@ -18,3 +18,9 @@ jobs:
           native-image --version
       - name: Build
         run: ./gradlew.bat nativeCompile
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable
+          path: ./build/native/nativeCompile/**.exe
+          
