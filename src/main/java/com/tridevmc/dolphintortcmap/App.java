@@ -20,11 +20,30 @@ public class App extends Application {
         stage.setScene(scene);
 
         // Check if a file was passed as an argument, if it was then tell the LinkerMapToRTCMapController to load it.
-        if(!getParameters().getRaw().isEmpty()) {
+        if (!getParameters().getRaw().isEmpty()) {
             File file = new File(getParameters().getRaw().getFirst());
             LinkerMapToRTCMapController controller = fxmlLoader.getController();
             controller.loadFile(file);
         }
+
+        // Add a drag and drop listener that will load the file when a file is dropped onto the window.
+        scene.setOnDragOver(event -> {
+            if (event.getDragboard().hasFiles()) {
+                event.acceptTransferModes(javafx.scene.input.TransferMode.COPY);
+            }
+            event.consume();
+        });
+
+        scene.setOnDragDropped(event -> {
+            var db = event.getDragboard();
+            if (db.hasFiles()) {
+                File file = db.getFiles().getFirst();
+                LinkerMapToRTCMapController controller = fxmlLoader.getController();
+                controller.loadFile(file);
+            }
+            event.setDropCompleted(true);
+            event.consume();
+        });
 
         stage.show();
     }
