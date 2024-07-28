@@ -1,0 +1,20 @@
+name: GraalVM build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Example step
+        run: |
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
+          native-image --version
+      - name: Build
+        run: gradlew nativeCompile
